@@ -2,18 +2,96 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Write & Open File</title>
+    <!-- 
+    Electron 中引入jQuery的正确方式：
+    记得要安装依赖
+    ' npm install jquery --save '
+    -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+  <style>
+  body{
+    margin:0;
+  }
+  /* 输入区域的样式 */
+  #textarea_t {
+      width: 90%;
+      background: #eee;
+      margin: 2em;
+      padding: 1em;
+      outline: none;
+  }
+  /* 按钮样式 */
+  #btn_write{
+    width: 200px;
+    height: 35px;
+    background: #fff;
+    outline: none;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    <!-- margin: 0 auto; -->
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+  }
+  #btn_write:hover{
+    box-shadow: 1px 1px 20px rgba(117, 117, 117, 0.29);
+  }
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
+  #btn_test{
+    width: 200px;
+    height: 35px;
+    background: #fff;
+    outline: none;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+    display: inline-block;
+    <!-- margin: 0 auto; -->
+  }
+  #btn_test:hover{
+    box-shadow: 1px 1px 20px rgba(117, 117, 117, 0.29);
+  }
+  
+  /* 拖拽的区域样式 */
+  .holder{
+    min-height: 200px;
+    background: #eee;
+    margin:2em;
+    padding:1em;
+    border:0px dotted #eee;
+    border-radius: 10px;
+    transition:.3s all ease-in-out;
+  }
+  /* 拖拽时用jQuery为其添加边框样式的class */
+  .holder-ondrag{
+    border:20px dotted  #d45700;
+  }
+  </style>
+  <body>
+
+    <h1>New Script</h1>
+    <p>Input the new script:</p>
+    <textarea rows="10" id="textarea_t"></textarea>
+    <button id="btn_write">Save</button>
+    <button id="btn_test">Test</button>
+
+    <hr>
+    
+    <h1>Drag file to open it.</h1>
+    <div id="holder" class="holder">
+      Drag sth. in here
+    </div>
+
   </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
 </html>
+
